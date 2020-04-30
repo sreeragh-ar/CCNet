@@ -232,7 +232,7 @@ def main():
         palette = get_palette(256)
 
         save_path = os.path.join(os.path.dirname(args.restore_from), 'outputs')
-        if not os.path.exists(save_path):
+        if not os.path.exists(save_path, exist_ok=True):
             os.makedirs(save_path)
 
         bar_format = '{desc}[{elapsed}<{remaining},{rate_fmt}]'
@@ -250,10 +250,10 @@ def main():
             seg_pred = np.asarray(np.argmax(output, axis=3), dtype=np.uint8)
             seg_gt = np.asarray(label.numpy()[:,:size[0],:size[1]], dtype=np.int)
 
-            for i in range(image.size(0)): 
-                output_im = PILImage.fromarray(seg_pred[i])
-                output_im.putpalette(palette)
-                output_im.save(os.path.join(save_path, name[i]+'.png'))
+            # for i in range(image.size(0)):
+            #     output_im = PILImage.fromarray(seg_pred[i])
+            #     output_im.putpalette(palette)
+            #     output_im.save(os.path.join(save_path, name[i]+'.png'))
         
             ignore_index = seg_gt != 255
             seg_gt = seg_gt[ignore_index]

@@ -70,8 +70,7 @@ Please download MIT imagenet pretrained [resnet101-imagenet.pth](http://scenepar
 
 ### Training and Evaluation
 
-```bash
-./run_local.sh YOUR_CS_PATH ccnet 60000 769,769 [0|1]
+```sh run_local.sh NUM_STEPS
 ``` 
 
 
